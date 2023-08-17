@@ -1,33 +1,53 @@
-# Use the PHP 7.4 image using Apache
-FROM php:7.4-apache
+# Base Image is latest Alpine
+FROM alpine:3.18
 
-# Labels
-LABEL maintainer="Jorge Pabon <pianistapr@hotmail.com>"
+# Maintainer information and description
+LABEL maintainer="Jorge Pabón <pianistapr@hotmail.com>" description="CannaLogs is a web application to track and log cannabis grow projects."
 
+# Setup Apache and PHP 8, also create the directory that will hold our application files /app
+RUN apk --no-cache --update \
+    add apache2 \
+    apache2-ssl \
+    curl \
+    php81-apache2 \
+    php81-bcmath \
+    php81-bz2 \
+    php81-calendar \
+    php81-common \
+    php81-ctype \
+    php81-curl \
+    php81-dom \
+    php81-gd \
+    php81-iconv \
+    php81-mbstring \
+    php81-mysqli \
+    php81-mysqlnd \
+    php81-openssl \
+    php81-pdo \
+    php81-pdo_dblib \
+    php81-pdo_mysql \
+    php81-pdo_odbc \
+    php81-pdo_pgsql \
+    php81-pdo_sqlite \
+    php81-phar \
+    php81-session \
+    php81-xml \
+    && mkdir /app
 
-# Update the system
-RUN apt-get update && apt upgrade -y
+# Copy our application to the /app directory
+COPY ./App /app
+RUN chmod -R 777 /app
 
-# Install additional extensions for PHP
-RUN docker-php-ext-install pdo mysqli pdo_mysql 
+# Create the /config directory
+RUN mkdir /config
+RUN chmod -R 777 /config
 
-# Enable the extensions
-RUN docker-php-ext-enable mysqli pdo_mysql
+# Expose our web ports
+EXPOSE 80 443
 
-# Copy the contents of the application to the container
-ADD ./CannaLogs /var/www
+# Add the entrypoint script
+ADD entrypoint.sh /
+RUN ["chmod", "+x", "/entrypoint.sh"]
 
-# Copy the site configuration to Apache
-COPY ./CannaLogs.conf /etc/apache2/sites-available/CannaLogs.conf
-
-# Enable mods
-RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf &&\
-    a2enmod rewrite &&\
-    a2enmod headers &&\
-    a2enmod rewrite &&\
-    a2dissite 000-default &&\
-    a2ensite CannaLogs &&\
-    service apache2 restart
-
-# Listen on port
-EXPOSE 80
+# Execute the entrypoint script
+ENTRYPOINT ["/entrypoint.sh"]

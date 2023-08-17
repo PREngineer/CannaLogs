@@ -1,0 +1,25 @@
+1. cd to the folder with the app and docker files
+
+2. Build the image
+
+	docker build -t <imagename> .
+
+3. Check it was successfully built
+
+	docker image ls
+
+4. Create a container (to test)
+
+	docker-compose up
+
+5. Tag it to upload it to Docker Hub
+
+	docker tag <imageName> <repoName>/<imageName>:<tag>
+
+6. Log into Docker Hub
+
+	docker login -u <username>
+
+Push it to Docker Hub
+
+	docker push <repoName>/<imageName>

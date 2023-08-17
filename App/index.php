@@ -16,6 +16,15 @@ require_once 'autoloader.php';
 echo '<br><br><br>';
 
 /****************
+    If app has not been configured
+****************/
+echo '
+    <script>
+      window.location = "setup.php";
+    </script>
+  ';
+
+/****************
     Top Pages
 ****************/
 
