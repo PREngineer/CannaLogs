@@ -26,7 +26,7 @@ class Database
   public function __construct()
   {
     // Read the settings file
-    require 'settings.php';
+    require '/config/settings.php';
 
     $this->dbtype = $DBTYPE;
     $this->dbname = $DBNAME;
@@ -39,7 +39,7 @@ class Database
     if( $this->dbtype == 'SQLite' )
     {
       // Create new DB file
-      $this->PDO   = new PDO("sqlite:CannaLogs.db");
+      $this->PDO   = new PDO("sqlite:/config/CannaLogs.db");
     }
     // If using MySQL, create the DB and set up the connection
     else

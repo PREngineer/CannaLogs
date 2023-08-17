@@ -114,7 +114,7 @@ spec:
           volumeMounts:
           - mountPath: "/config"
             name: cannalogs-pv-storage1
-          - mountPath: "/App/photos"
+          - mountPath: "/app/photos"
             name: cannalogs-pv-storage2
       # Specify the volumes
       volumes:

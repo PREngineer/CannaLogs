@@ -51,19 +51,19 @@ class DatabaseSetup
     { $this->dbpass  = $data['dbpassword']; }
 
     // Delete previous DB file if re-running
-    if( file_exists( "CannaLogs.db" ) )
+    if( file_exists( "/config/CannaLogs.db" ) )
     {
-      unlink( "CannaLogs.db" );
+      unlink( "/config/CannaLogs.db" );
     }
 
     // If using SQLite
     if( $this->dbtype == 'SQLite' )
     {
       // Create new DB file
-      $this->PDO   = new PDO("sqlite:CannaLogs.db");
+      $this->PDO   = new PDO("sqlite:/config/CannaLogs.db");
 
       // Save settings to file
-      $file = 'settings.php';
+      $file = '/config/settings.php';
 
       $content = '
       <?php
@@ -95,7 +95,7 @@ class DatabaseSetup
         $this->PDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
         // Save settings to file
-        $file = 'settings.php';
+        $file = '/config/settings.php';
 
         $content = '
         <?php

@@ -222,7 +222,7 @@
       if( !empty($_POST) )
       {
         // If using SQLite
-        if( $_POST['dbtype'] == 'SQLite' && file_exists( "CannaLogs.db" ) )
+        if( $_POST['dbtype'] == 'SQLite' && file_exists( "/config/CannaLogs.db" ) )
         {
           // We are good if file was created
           $dbsetup = True;
