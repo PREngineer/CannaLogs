@@ -1,0 +1,45 @@
+# Create the App Deployment
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cannalogs-deployment
+  namespace: production
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cannalogs
+  template:
+    metadata:
+      labels:
+        app: cannalogs
+    spec:
+    # Specify the container
+      containers:
+        - name: cannalogs
+          image: prengineer/cannalogs:latest
+          env:
+            - name: TZ
+              value: America/New_York
+          resources:
+            limits:
+              memory: "500Mi"
+              cpu: "1000m"
+          ports:
+            - name: httpport
+              containerPort: 80
+          # Add the volumes
+          volumeMounts:
+          - mountPath: "/config"
+            name: cannalogs-pv-storage1
+          - mountPath: "/app/photos"
+            name: cannalogs-pv-storage2
+      # Specify the volumes
+      volumes:
+      - name: cannalogs-pv-storage1
+        persistentVolumeClaim:
+          claimName: cannalogs-pv-claim1
+      - name: cannalogs-pv-storage2
+        persistentVolumeClaim:
+          claimName: cannalogs-pv-claim2

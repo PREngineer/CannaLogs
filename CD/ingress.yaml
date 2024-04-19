@@ -1,0 +1,37 @@
+# Ingress for the cannalogs application
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    # Use the Production Let's Encrypt Issuer
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    # This ingress is for Traefik
+    spec.ingressClassName: traefik
+    # Redirect all traffic to HTTPS, always
+    traefik.ingress.kubernetes.io/frontend-entry-points: http,https
+    traefik.ingress.kubernetes.io/redirect-entry-point: https
+    traefik.ingress.kubernetes.io/redirect-permanent: "true"
+  labels:
+    app: cannalogs
+  name: cannalogs
+  # Deploy to production namespace
+  namespace: production
+spec:
+  rules:
+  # Change to your domain
+  - host: 420.x24hr.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: cannalogs
+            port: 
+              number: 80
+        path: /
+        pathType: Prefix  
+  tls:
+  - hosts:
+    # Change to your domain
+    - 420.x24hr.com
+    secretName: cannalogs-tls

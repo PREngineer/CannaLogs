@@ -1,0 +1,37 @@
+# Create a Persistent Volume Claim
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: cannalogs-pv-claim1
+  namespace: production
+spec:
+  storageClassName: ""
+  # Name of the volume to tie to this claim
+  volumeName: cannalogs-pv-volume1
+  accessModes:
+  - ReadWriteMany
+  volumeMode: Filesystem  
+  resources:
+    requests:
+      storage: 1Gi
+
+---
+
+# Create a Persistent Volume Claim
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: cannalogs-pv-claim2
+  namespace: production
+spec:
+  storageClassName: ""
+  # Name of the volume to tie to this claim
+  volumeName: cannalogs-pv-volume2
+  accessModes:
+  - ReadWriteMany
+  volumeMode: Filesystem  
+  resources:
+    requests:
+      storage: 1Gi

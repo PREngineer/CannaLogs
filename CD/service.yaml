@@ -1,0 +1,15 @@
+# Create the Exposed App Service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: cannalogs
+  namespace: production
+spec:
+  selector:
+    app: cannalogs
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 80

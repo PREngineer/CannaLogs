@@ -1,0 +1,53 @@
+# Create a Persistent Volume
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: cannalogs-pv-volume1
+  namespace: production
+spec:
+  storageClassName: ""
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy:
+  mountOptions:
+    - hard
+    # Mount using NFS v 4.1
+    - nfsvers=4.1
+  nfs:
+    # The path in the NAS
+    path: "/volume1/Kubernetes/CannaLogs"
+    # The NAS IP
+    server: 10.0.0.58
+    # Make sure to allow to write
+    readOnly: false
+
+---
+
+# Create a Persistent Volume
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: cannalogs-pv-volume2
+  namespace: production
+spec:
+  storageClassName: ""
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy:
+  mountOptions:
+    - hard
+    # Mount using NFS v 4.1
+    - nfsvers=4.1
+  nfs:
+    # The path in the NAS
+    path: "/volume1/Kubernetes/CannaLogsPhotos"
+    # The NAS IP
+    server: 10.0.0.58
+    # Make sure to allow to write
+    readOnly: false
