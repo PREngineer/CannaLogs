@@ -15,8 +15,8 @@ metadata:
   labels:
     app: cannalogs
   name: cannalogs
-  # Deploy to production namespace
-  namespace: production
+  # Deploy to cannalogs namespace
+  namespace: cannalogs
 spec:
   rules:
   # Change to your domain

@@ -4,7 +4,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: cannalogs-deployment
-  namespace: production
+  namespace: cannalogs
 spec:
   replicas: 1
   selector:

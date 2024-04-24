@@ -1,8 +1,8 @@
-# Create the Production Namespace (if not exist)
+# Create the cannalogs Namespace (if not exist)
 
 #kind: Namespace
 #apiVersion: v1
 #metadata:
-#  name: production
+#  name: cannalogs
 #  labels:
-#    name: production
+#    name: cannalogs

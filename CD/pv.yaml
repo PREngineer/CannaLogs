@@ -4,7 +4,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: cannalogs-pv-volume1
-  namespace: production
+  namespace: cannalogs
 spec:
   storageClassName: ""
   capacity:
@@ -32,7 +32,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: cannalogs-pv-volume2
-  namespace: production
+  namespace: cannalogs
 spec:
   storageClassName: ""
   capacity:

@@ -4,7 +4,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: cannalogs-pv-claim1
-  namespace: production
+  namespace: cannalogs
 spec:
   storageClassName: ""
   # Name of the volume to tie to this claim
@@ -24,7 +24,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: cannalogs-pv-claim2
-  namespace: production
+  namespace: cannalogs
 spec:
   storageClassName: ""
   # Name of the volume to tie to this claim

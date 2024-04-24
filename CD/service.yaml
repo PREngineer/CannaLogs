@@ -4,7 +4,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: cannalogs
-  namespace: production
+  namespace: cannalogs
 spec:
   selector:
     app: cannalogs
