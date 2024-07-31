@@ -56,7 +56,7 @@ spec:
       steps {
         sshagent(credentials: ['k3s']) {
           sh '''
-            sh 'ssh -o StrictHostKeyChecking=no -l jorge.l.pabon.cruz pi1 kubectl delete pods --all --namespace=cannalogs'
+            ssh -o StrictHostKeyChecking=no -l jorge.l.pabon.cruz pi1 kubectl delete pods --all --namespace=cannalogs
           '''
         }
       }
