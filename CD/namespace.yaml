@@ -1,8 +1,8 @@
 # Create the cannalogs Namespace (if not exist)
 
-#kind: Namespace
-#apiVersion: v1
-#metadata:
-#  name: cannalogs
-#  labels:
-#    name: cannalogs
+kind: Namespace
+apiVersion: v1
+metadata:
+ name: cannalogs
+ labels:
+   name: cannalogs

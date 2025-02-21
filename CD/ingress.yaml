@@ -20,7 +20,7 @@ metadata:
 spec:
   rules:
   # Change to your domain
-  - host: 420.x24hr.com
+  - host: <domain.tld>
     http:
       paths:
       - backend:
@@ -33,5 +33,5 @@ spec:
   tls:
   - hosts:
     # Change to your domain
-    - 420.x24hr.com
+    - <domain.tld>
     secretName: cannalogs-tls

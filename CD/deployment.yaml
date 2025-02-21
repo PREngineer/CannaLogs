@@ -6,6 +6,7 @@ metadata:
   name: cannalogs-deployment
   namespace: cannalogs
 spec:
+  # How many containers to run
   replicas: 1
   selector:
     matchLabels:
@@ -16,26 +17,29 @@ spec:
         app: cannalogs
     spec:
     # Specify the container
-      containers:
+      containers:      
         - name: cannalogs
           image: prengineer/cannalogs:latest
           env:
             - name: TZ
               value: America/New_York
           resources:
+            # Set the limits
             limits:
               memory: "500Mi"
               cpu: "1000m"
           ports:
             - name: httpport
               containerPort: 80
-          # Add the volumes
+          # Mount the volumes
           volumeMounts:
+          # Contains the config file
           - mountPath: "/config"
             name: cannalogs-pv-storage1
+          # Contains the photos location
           - mountPath: "/app/photos"
             name: cannalogs-pv-storage2
-      # Specify the volumes
+      # Specify the persistent volumes to associate with each claim
       volumes:
       - name: cannalogs-pv-storage1
         persistentVolumeClaim:

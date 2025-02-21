@@ -18,9 +18,9 @@ spec:
     - nfsvers=4.1
   nfs:
     # The path in the NAS
-    path: "/volume1/Kubernetes/CannaLogs"
+    path: "/path/to/folder"
     # The NAS IP
-    server: 10.0.0.58
+    server: <NFS Server IP>
     # Make sure to allow to write
     readOnly: false
 
@@ -46,8 +46,8 @@ spec:
     - nfsvers=4.1
   nfs:
     # The path in the NAS
-    path: "/volume1/Kubernetes/CannaLogsPhotos"
+    path: "/path/to/folder"
     # The NAS IP
-    server: 10.0.0.58
+    server: <NFS Server IP>
     # Make sure to allow to write
     readOnly: false
