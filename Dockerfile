@@ -1,50 +1,45 @@
-# Base Image is latest Alpine
-FROM alpine:3.18
+# Base Image is Alpine
+FROM alpine:3.24.3
 
 # Maintainer information and description
-LABEL maintainer="Jorge Pabón <pianistapr@hotmail.com>" description="CannaLogs is a web application to track and log cannabis grow projects."
+LABEL maintainer="Jorge Pabón <pianistapr@hotmail.com>" \
+      description="CannaLogs is a web application to track and log cannabis grow projects."
 
-# Setup Apache and PHP 8, also create the directory that will hold our application files /app
-RUN apk --no-cache --update \
-    add apache2 \
+# Setup Apache, PHP 8.4 and its required extensions, also create the directory that will hold our application files /app
+RUN apk add --no-cache \
+    apache2 \
     apache2-ssl \
     curl \
-    php81-apache2 \
-    php81-bcmath \
-    php81-bz2 \
-    php81-calendar \
-    php81-common \
-    php81-ctype \
-    php81-curl \
-    php81-dom \
-    php81-gd \
-    php81-iconv \
-    php81-mbstring \
-    php81-mysqli \
-    php81-mysqlnd \
-    php81-openssl \
-    php81-pdo \
-    php81-pdo_dblib \
-    php81-pdo_mysql \
-    php81-pdo_odbc \
-    php81-pdo_pgsql \
-    php81-pdo_sqlite \
-    php81-phar \
-    php81-session \
-    php81-xml \
-    && mkdir /app
+    php84 \
+    php84-apache2 \
+    php84-bcmath \
+    php84-bz2 \
+    php84-calendar \
+    php84-common \
+    php84-ctype \
+    php84-curl \
+    php84-dom \
+    php84-gd \
+    php84-iconv \
+    php84-mbstring \
+    php84-mysqli \
+    php84-mysqlnd \
+    php84-openssl \
+    php84-pdo \
+    php84-pdo_dblib \
+    php84-pdo_mysql \
+    php84-pdo_odbc \
+    php84-pdo_pgsql \
+    php84-pdo_sqlite \
+    php84-phar \
+    php84-session \
+    php84-xml \
+    && mkdir -p /app /app/photos /config
 
-# Copy our application to the /app directory
+# Copy our application files
 COPY ./App /app
-RUN chmod -R 777 /app
-
-# Create the /app/photos directory
-RUN mkdir /app/photos
-RUN chmod -R 777 /app/photos
-
-# Create the /config directory
-RUN mkdir /config
-RUN chmod -R 777 /config
+# Set permissions
+RUN chmod -R 777 /app /app/photos /config
 
 # Expose our web ports
 EXPOSE 80 443
