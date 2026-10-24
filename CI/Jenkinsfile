@@ -74,7 +74,7 @@ spec:
       steps {
         sshagent(credentials: ['k3s']) {
           sh '''
-            ssh -o StrictHostKeyChecking=no -l jlpc pi1 \
+            ssh -o StrictHostKeyChecking=no -l jlpc k3s \
               kubectl delete pods --all --namespace=cannalogs
           '''
         }
