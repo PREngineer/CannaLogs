@@ -45,8 +45,10 @@ RUN chmod -R 777 /app /app/photos /config
 EXPOSE 80 443
 
 # Add the entrypoint script
-ADD entrypoint.sh /
-RUN ["chmod", "+x", "/entrypoint.sh"]
+COPY entrypoint.sh /entrypoint.sh
+
+RUN sed -i 's/\r$//' /entrypoint.sh \
+    && chmod 755 /entrypoint.sh
 
 # Execute the entrypoint script
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
