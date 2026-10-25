@@ -1,4 +1,3 @@
-
 #!/bin/sh
 
 # Exit on unset variables and command failures
